@@ -1,3 +1,4 @@
 <Solution>
+  <Project Path="MultiSwitchButtonUI.Tests/MultiSwitchButtonUI.Tests.csproj" Id="280aef6b-2f51-4344-80f2-66e084e9ad54" />
   <Project Path="MultiSwitchButtonUI/MultiSwitchButtonUI.csproj" />
 </Solution>

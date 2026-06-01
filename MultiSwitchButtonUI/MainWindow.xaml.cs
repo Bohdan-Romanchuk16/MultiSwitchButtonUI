@@ -22,7 +22,7 @@ namespace MultiSwitchButtonUI
          InitializeComponent();
       }
 
-      private void Button1_OnClick(object sender, RoutedEventArgs e)
+      public void Button1_OnClick(object sender, RoutedEventArgs e)
       {
          Application.Current.Resources.MergedDictionaries.Clear();
 
@@ -39,7 +39,7 @@ namespace MultiSwitchButtonUI
              });
       }
 
-      private void Button2_OnClick(object sender, RoutedEventArgs e)
+      public void Button2_OnClick(object sender, RoutedEventArgs e)
       {
          Application.Current.Resources.MergedDictionaries.Clear();
 
