@@ -3,14 +3,5 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:MultiSwitchButtonUI"
              StartupUri="MainWindow.xaml">
-    <Application.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Styles/button1_aktiv.xaml"/>
-                <ResourceDictionary Source="/Styles/button2_unaktiv.xaml"/>
-                <ResourceDictionary Source="/Styles/button1_aktiv.xaml"/>
-                <ResourceDictionary Source="/Styles/button2_unaktiv.xaml"/>
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </Application.Resources>
+
 </Application>

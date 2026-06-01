@@ -11,9 +11,34 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
         
-        <Button Click="Button1_OnClick" Grid.Column="0" Width="150" Height="100" Content="{DynamicResource Status1}" FontSize="25" Background="White" />
-        <Button Click="Button2_OnClick" Grid.Column="1" Width="150" Height="100" Content="{DynamicResource Status2}" FontSize="25" Background="White"/>
+        <Button x:Name="ButtonAll"
+            Content="Alle EIN"
+            Grid.ColumnSpan="2"
+            Width="120"
+            Height="50"
+            Margin="10"
+            Click="ButtonAll_OnClick"/>
+        
+        <Button x:Name="Button1"
+                Grid.Row="2"
+            Content="Ausgang 1"
+            Width="120"
+            Height="50"
+            Margin="10"
+            Click="Button1_OnClick"/>
 
+        <Button x:Name="Button2"
+                Grid.Column="1"
+                Grid.Row="1"
+            Content="Ausgang 2"
+            Width="120"
+            Height="50"
+            Margin="10"
+            Click="Button2_OnClick"/>
     </Grid>
 </Window>

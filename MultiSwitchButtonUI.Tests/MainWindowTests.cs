@@ -6,61 +6,77 @@ namespace MultiSwitchButtonUI.Tests
    public class MainWindowTests
    {
       [StaFact]
-      public void Button1Click_ClearsDictionaries_AndLoadsTwoNew()
+      public void Button1Click_ActivatesOnlyLed1()
       {
          // Arrange
-         var app = System.Windows.Application.Current ?? new System.Windows.Application();
-         app.Resources.MergedDictionaries.Clear();
-
-         app.Resources.MergedDictionaries.Add([]);
-         app.Resources.MergedDictionaries.Add([]);
-         app.Resources.MergedDictionaries.Add([]);
-
-         // Assert 
-         Assert.Equal(3, app.Resources.MergedDictionaries.Count);
-
-         // Act 
-         app.Resources.MergedDictionaries.Clear();
-
-         // Assert 
-         Assert.Empty(app.Resources.MergedDictionaries);
-      }
-
-      [StaFact]
-      public void Button2Click_ClearsDictionaries_AndLoadsTwoNew()
-      {
-         // Arrange
-         var app = System.Windows.Application.Current ?? new System.Windows.Application();
-         app.Resources.MergedDictionaries.Clear();
-
-         app.Resources.MergedDictionaries.Add([]);
-         app.Resources.MergedDictionaries.Add([]);
-
-         // Assert 
-         Assert.Equal(2, app.Resources.MergedDictionaries.Count);
+         var window = new MainWindow();
 
          // Act
-         app.Resources.MergedDictionaries.Clear();
+         window.Button1_OnClick(null, null);
 
-         // Assert 
-         Assert.Empty(app.Resources.MergedDictionaries);
+         // Assert
+         Assert.True(window.Led1Active);
+         Assert.False(window.Led2Active);
       }
 
       [StaFact]
-      public void ButtonClick_ClearsPreviousDictionaries()
+      public void Button2Click_ActivatesOnlyLed2()
       {
          // Arrange
-         var app = System.Windows.Application.Current ?? new System.Windows.Application();
-         app.Resources.MergedDictionaries.Clear();
+         var window = new MainWindow();
 
-         app.Resources.MergedDictionaries.Add([]);
-         app.Resources.MergedDictionaries.Add([]);
-         app.Resources.MergedDictionaries.Add([]);
+         // Act
+         window.Button2_OnClick(null, null);
 
-         // Act 
-         app.Resources.MergedDictionaries.Clear();
+         // Assert
+         Assert.False(window.Led1Active);
+         Assert.True(window.Led2Active);
+      }
 
-         Assert.Empty(app.Resources.MergedDictionaries);
+      [StaFact]
+      public void AllButtonClick_ActivatesBothLeds()
+      {
+         // Arrange
+         var window = new MainWindow();
+
+         // Act
+         window.ButtonAll_OnClick(null, null);
+
+         // Assert
+         Assert.True(window.Led1Active);
+         Assert.True(window.Led2Active);
+      }
+
+      [StaFact]
+      public void Button1AfterAll_ActivatesOnlyLed1()
+      {
+         // Arrange
+         var window = new MainWindow();
+
+         window.ButtonAll_OnClick(null, null);
+
+         // Act
+         window.Button1_OnClick(null, null);
+
+         // Assert
+         Assert.True(window.Led1Active);
+         Assert.False(window.Led2Active);
+      }
+
+      [StaFact]
+      public void Button2AfterAll_ActivatesOnlyLed2()
+      {
+         // Arrange
+         var window = new MainWindow();
+
+         window.ButtonAll_OnClick(null, null);
+
+         // Act
+         window.Button2_OnClick(null, null);
+
+         // Assert
+         Assert.False(window.Led1Active);
+         Assert.True(window.Led2Active);
       }
    }
 }
