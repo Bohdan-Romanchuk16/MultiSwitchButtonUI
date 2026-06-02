@@ -16,12 +16,26 @@ namespace MultiSwitchButtonUI
 
       public void Button1_OnClick(object sender, RoutedEventArgs e)
       {
-         SetState(true, false);
+         if (Led1Active == false)
+         {
+            SetState(true, false);
+         }
+         else
+         {
+            SetState(false, false);
+         }
       }
 
       public void Button2_OnClick(object sender, RoutedEventArgs e)
       {
-         SetState(false, true);
+         if (Led2Active == false)
+         {
+            SetState(false, true);
+         }
+         else
+         {
+            SetState(false, false);
+         }
       }
 
       public void ButtonAll_OnClick(object sender, RoutedEventArgs e)

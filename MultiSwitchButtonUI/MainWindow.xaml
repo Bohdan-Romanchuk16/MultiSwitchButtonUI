@@ -17,7 +17,7 @@
         </Grid.RowDefinitions>
         
         <Button x:Name="ButtonAll"
-            Content="Alle EIN"
+            Content="Alle Ein"
             Grid.ColumnSpan="2"
             Width="120"
             Height="50"
