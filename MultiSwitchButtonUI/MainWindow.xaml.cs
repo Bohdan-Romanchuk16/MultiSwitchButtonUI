@@ -29,7 +29,6 @@ namespace MultiSwitchButtonUI
          SetState(true, true);
       }
 
-
       public void SetState(bool led1, bool led2)
       {
          Led1Active = led1;
