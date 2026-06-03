@@ -6,9 +6,9 @@ using System.Windows.Media;
 namespace MultiSwitchButtonUI
 {
    public partial class MainWindow : Window
-   {
-      public bool Led1Active { get; private set; }
-      public bool Led2Active { get; private set; }
+   {                                                                            //Alle Methoden sowie Zeile 8+9 würde ich von public auf privat setzen. 
+      public bool Led1Active { get; private set; }                              // "privat bool"  
+      public bool Led2Active { get; private set; }                              // "privat bool"
 
       private SerialPort arduinoPort;
 
@@ -38,7 +38,7 @@ namespace MultiSwitchButtonUI
          }
       }
 
-      public void Button1_OnClick(object sender, RoutedEventArgs e)
+      public void Button1_OnClick(object sender, RoutedEventArgs e)           // "privat void"
       {
          if (!arduinoPort.IsOpen) return;
 
@@ -54,7 +54,7 @@ namespace MultiSwitchButtonUI
          }
       }
 
-      public void Button2_OnClick(object sender, RoutedEventArgs e)
+      public void Button2_OnClick(object sender, RoutedEventArgs e)                      // "privat void"
       {
          if (!arduinoPort.IsOpen) return;
 
@@ -70,7 +70,7 @@ namespace MultiSwitchButtonUI
          }
       }
 
-      public void ButtonAll_OnClick(object sender, RoutedEventArgs e)
+      public void ButtonAll_OnClick(object sender, RoutedEventArgs e)                      // "privat void"
       {
          if (!arduinoPort.IsOpen) return;
 
@@ -78,7 +78,7 @@ namespace MultiSwitchButtonUI
          SetState(true, true);
       }
 
-      public void SetState(bool led1, bool led2)
+      public void SetState(bool led1, bool led2)                                           // "privat void"
       {
          Led1Active = led1;
          Led2Active = led2;
