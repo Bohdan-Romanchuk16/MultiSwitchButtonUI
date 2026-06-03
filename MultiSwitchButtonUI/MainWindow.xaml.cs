@@ -4,9 +4,9 @@ using System.Windows.Media;
 namespace MultiSwitchButtonUI
 {
    public partial class MainWindow : Window
-   {
-      public bool Led1Active { get; private set; }
-      public bool Led2Active { get; private set; }
+   {                                                                            //Alle Methoden sowie Zeile 8+9 würde ich von public auf privat setzen. 
+      public bool Led1Active { get; private set; }                              // "privat bool"  
+      public bool Led2Active { get; private set; }                              // "privat bool"
 
       public MainWindow()
       {
@@ -14,9 +14,9 @@ namespace MultiSwitchButtonUI
          SetState(false, false);
       }
 
-      public void Button1_OnClick(object sender, RoutedEventArgs e)
+      public void Button1_OnClick(object sender, RoutedEventArgs e)           // "privat void"
       {
-         if (Led1Active == false)
+         if (Led1Active == false)                                        //Hier könnte man ein if (!Led1Active) setzen
          {
             SetState(true, false);
          }
@@ -26,10 +26,10 @@ namespace MultiSwitchButtonUI
          }
       }
 
-      public void Button2_OnClick(object sender, RoutedEventArgs e)
+      public void Button2_OnClick(object sender, RoutedEventArgs e)                      // "privat void"
       {
-         if (Led2Active == false)
-         {
+         if (Led2Active == false)                                                    //Hier könnte man ein if (!Led2Active) setzen
+         { 
             SetState(false, true);
          }
          else
@@ -38,12 +38,12 @@ namespace MultiSwitchButtonUI
          }
       }
 
-      public void ButtonAll_OnClick(object sender, RoutedEventArgs e)
+      public void ButtonAll_OnClick(object sender, RoutedEventArgs e)                      // "privat void"
       {
          SetState(true, true);
       }
 
-      public void SetState(bool led1, bool led2)
+      public void SetState(bool led1, bool led2)                                           // "privat void"
       {
          Led1Active = led1;
          Led2Active = led2;
