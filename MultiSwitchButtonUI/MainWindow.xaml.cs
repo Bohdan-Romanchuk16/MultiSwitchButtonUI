@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using System;
+using System.IO.Ports;
+using System.Windows;
 using System.Windows.Media;
 
 namespace MultiSwitchButtonUI
@@ -8,38 +10,71 @@ namespace MultiSwitchButtonUI
       public bool Led1Active { get; private set; }
       public bool Led2Active { get; private set; }
 
+      private SerialPort arduinoPort;
+
       public MainWindow()
       {
          InitializeComponent();
          SetState(false, false);
+
+         arduinoPort = new SerialPort("COM5", 9600);
+
+         arduinoPort.DtrEnable = true; 
+         arduinoPort.RtsEnable = true;  
+         arduinoPort.WriteTimeout = 1500;
+         arduinoPort.ReadTimeout = 1500;
+
+         try
+         {
+            arduinoPort.Open();
+
+            System.Threading.Thread.Sleep(2000);
+
+            arduinoPort.Write("0");
+         }
+         catch (Exception ex)
+         {
+            MessageBox.Show($"Fehler beim Öffnen von COM5: {ex.Message}");
+         }
       }
 
       public void Button1_OnClick(object sender, RoutedEventArgs e)
       {
+         if (!arduinoPort.IsOpen) return;
+
          if (Led1Active == false)
          {
-            SetState(true, false);
+            arduinoPort.Write("1"); 
+            SetState(true, Led2Active);
          }
          else
          {
-            SetState(false, false);
+            arduinoPort.Write("0");
+            SetState(false, Led2Active);
          }
       }
 
       public void Button2_OnClick(object sender, RoutedEventArgs e)
       {
+         if (!arduinoPort.IsOpen) return;
+
          if (Led2Active == false)
          {
-            SetState(false, true);
+            arduinoPort.Write("2");
+            SetState(Led1Active, true);
          }
          else
          {
-            SetState(false, false);
+            arduinoPort.Write("3");
+            SetState(Led1Active, false);
          }
       }
 
       public void ButtonAll_OnClick(object sender, RoutedEventArgs e)
       {
+         if (!arduinoPort.IsOpen) return;
+
+         arduinoPort.Write("4");
          SetState(true, true);
       }
 
@@ -51,9 +86,16 @@ namespace MultiSwitchButtonUI
          Button1.Background = led1 ? Brushes.LightGreen : Brushes.White;
          Button2.Background = led2 ? Brushes.LightGreen : Brushes.White;
 
-         ButtonAll.Background = (led1 && led2)
-             ? Brushes.LightBlue
-             : Brushes.White;
+         ButtonAll.Background = (led1 && led2) ? Brushes.LightBlue : Brushes.White;
+      }
+
+      protected override void OnClosed(EventArgs e)
+      {
+         if (arduinoPort != null && arduinoPort.IsOpen)
+         {
+            arduinoPort.Close();
+         }
+         base.OnClosed(e);
       }
    }
 }

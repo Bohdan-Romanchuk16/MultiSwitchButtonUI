@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MultiSwitchButtonUI"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" Background="LightGray">
+        Title="Kesselsteuerung" Height="450" Width="800" Background="LightGray">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -15,30 +15,35 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        
-        <Button x:Name="ButtonAll"
-            Content="Alle Ein"
-            Grid.ColumnSpan="2"
-            Width="120"
-            Height="50"
-            Margin="10"
-            Click="ButtonAll_OnClick"/>
-        
-        <Button x:Name="Button1"
-                Grid.Row="2"
-            Content="Kessel 1"
-            Width="120"
-            Height="50"
-            Margin="10"
-            Click="Button1_OnClick"/>
 
-        <Button x:Name="Button2"
-                Grid.Column="1"
+        <!-- Zeile 0 (Oben): Schalter für Alle -->
+        <Button x:Name="ButtonAll"
+                Content="Alle Ein"
+                Grid.Row="0"
+                Grid.ColumnSpan="2"
+                Width="120"
+                Height="50"
+                Margin="10"
+                Click="ButtonAll_OnClick"/>
+
+        <!-- Zeile 1 (Unten), Spalte 0 (Links): Kessel 1 -->
+        <Button x:Name="Button1"
                 Grid.Row="1"
-            Content="Kessel 2"
-            Width="120"
-            Height="50"
-            Margin="10"
-            Click="Button2_OnClick"/>
+                Grid.Column="0"
+                Content="Kessel 1"
+                Width="120"
+                Height="50"
+                Margin="10"
+                Click="Button1_OnClick"/>
+
+        <!-- Zeile 1 (Unten), Spalte 1 (Rechts): Kessel 2 -->
+        <Button x:Name="Button2"
+                Grid.Row="1"
+                Grid.Column="1"
+                Content="Kessel 2"
+                Width="120"
+                Height="50"
+                Margin="10"
+                Click="Button2_OnClick"/>
     </Grid>
 </Window>
