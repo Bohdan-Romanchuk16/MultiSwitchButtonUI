@@ -8,8 +8,8 @@ public partial class MainWindow
 
    private readonly ArduinoFinderOptaModbusTcp _opta = new(ModbusTcpServerIp);
 
-
    private bool _led1State;
+
    private bool _led2State;
 
    public MainWindow()
@@ -18,7 +18,7 @@ public partial class MainWindow
       {
          _opta.Connect();
 
-         for (var i = 0; i < 5; i++)
+         for (var i = 0; i < 3; i++)
          {
 
             _opta.SetOutputOn(0);
@@ -56,8 +56,10 @@ public partial class MainWindow
    {
       try
       {
+         _opta.Connect();
          _led1State = !_led1State;
          _opta.SetOutputOn(0);
+         _opta.SetOutputOff(1);
 
       }
       catch (Exception ex)
@@ -71,7 +73,25 @@ public partial class MainWindow
    {
       try
       {
+         _opta.Connect();
          _led2State = !_led2State;
+         _opta.SetOutputOn(1);
+         _opta.SetOutputOff(0);
+
+      }
+      catch (Exception ex)
+      {
+         MessageBox.Show("Fehler: " + ex.Message);
+      }
+   }
+
+   private void ButtonAll_OnClick(object sender, RoutedEventArgs e)
+   {
+      try
+      {
+         _opta.Connect();
+         _led2State = !_led2State;
+         _opta.SetOutputOn(0);
          _opta.SetOutputOn(1);
 
       }
